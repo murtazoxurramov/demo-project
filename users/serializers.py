@@ -35,6 +35,7 @@ class SignUpSerializer(serializers.ModelSerializer):
             code = user.create_verify_code(user.auth_type)
             send_phone_notification(user.phone_number, code)
         user.save()
+        return user
         
     def validate(self, attrs):
         super(SignUpSerializer, self).validate(attrs)
